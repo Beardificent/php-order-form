@@ -15,6 +15,21 @@ session_start();
 $emailErr = $streetErr = $streetNumErr = $cityErr = $zipcodeErr = "";
 $email = $street = $streetNum = $city = $zipcode = "" ;
 $success = "";
+
+//SESSION (CONFUSED ME) FIRST WE DEFINE THE VARIABLE OF OUR SESSION WHICH CORRESPONDS WITH THE LOCATION IN DOM (CONTINUED DOWN IN IF STATEMENTS)
+if (!empty($_SESSION['street'])){
+    $street = $_SESSION['street'];
+}
+if (!empty($_SESSION['streetnumber'])){
+    $streetNum = $_SESSION['streetnumber'];
+}
+if (!empty($_SESSION['city'])){
+    $city = $_SESSION['city'];
+}
+if (!empty($_SESSION['zipcode'])){
+    $zipcode = $_SESSION['zipcode'];
+}
+
 //ERROR MESSAGING INPUTFIELDS
 
 
@@ -36,7 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z-' ]*$/",$street)) {
             $streetErr = "Only letters and white space allowed";
         } else {
-           $_SESSION['street'] = $street;
+            //DEFINE SESSION WHICH EQUALS VARIABLE WE CREATED ABOVE
+            $_SESSION['street'] = $street;
         }
     }
 
@@ -58,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z-' ]*$/",$city)) {
             $cityErr = "Only letters and white space allowed";
         } else {
-            $_SESSION['city']= $city;
+            $_SESSION['city'] = $city;
         }
     }
 
@@ -68,6 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $zipcode = $_POST["zipcode"];
         if(!preg_match("/^[0-9*#+]+$/", $zipcode)){
            $zipcodeErr = "Only numeric values allowed";
+        } else {
+            $_SESSION['zipcode'] = $zipcode;
         }
 
     }
@@ -78,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 }
+
 
 
 
@@ -93,8 +112,11 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
+
+
+
 //your products with their price.
-$products = [
+$food = [
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
     ['name' => 'Club Cheese & Ham', 'price' => 4],
@@ -102,13 +124,18 @@ $products = [
     ['name' => 'Club Salmon', 'price' => 5]
 ];
 
-$products = [
+$drinks = [
     ['name' => 'Cola', 'price' => 2],
     ['name' => 'Fanta', 'price' => 2],
     ['name' => 'Sprite', 'price' => 2],
     ['name' => 'Ice-tea', 'price' => 3],
 ];
 
+if (!isset($_SESSION['products'])){
+    $products = $food;
+} else {
+    $products = $_SESSION['products'];
+}
 $totalValue = 0;
 
 require 'form-view.php';
