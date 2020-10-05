@@ -9,15 +9,14 @@ ini_set("display_startup_errors", '1');
 error_reporting(E_ALL);
 
 
-
-
 //we are going to use session variables so we need to enable sessions
 session_start();
 
 $emailErr = $streetErr = $streetNumErr = $cityErr = $zipcodeErr = "";
 $email = $street = $streetNum = $city = $zipcode = "" ;
-
+$success = "";
 //ERROR MESSAGING INPUTFIELDS
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
@@ -62,14 +61,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $zipcodeErr = "Zipcode is required";
     } else {
         $zipcode = check_input($_POST["zipcode"]);
-        if(!preg_match("/([A-Za-z0-9])+/", $zipcode)){
-           $zipcodeErr = "Only alphanumeric values allowed";
+        if(!preg_match("/^[0-9*#+]+$/", $zipcode)){
+           $zipcodeErr = "Only numeric values allowed";
+        }
+        if ($emailErr == "" && $streetErr == "" && $streetNumErr == "" && $cityErr == "" && $zipcodeErr == ""){
+            $success = '<div class="alert alert-success" role="alert">
+        This is a success alert—check it out!
+</div>';
         }
     }
+
 }
 
 
 
+/*
 // define variables and set to empty values
 $email = $street = $streetnumber = $city = $zipcode = "";
 
@@ -80,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $city = check_input($_POST["city"]);
     $zipcode = check_input($_POST["zipcode"]);
 }
+*/
 
 function check_input($data) {
     $data = trim($data);

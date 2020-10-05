@@ -12,6 +12,7 @@
 <body>
 <div class="container">
     <h1>Order food in restaurant "the Personal Ham Processors"</h1>
+    <?php echo $success;?>
     <nav>
         <ul class="nav">
             <li class="nav-item">
@@ -28,6 +29,7 @@
                 <label for="email">E-mail:</label>
                 <input type="text" id="email" name="email" class="form-control" value="<?php echo $email;?>">
                 <span class="error" style="color:red;"><?php echo $emailErr;?></span>
+
 
             </div>
             <div></div>
