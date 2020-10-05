@@ -52,12 +52,12 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control">
+                    <input type="text" id="city" name="city" class="form-control" value="<?php echo $city;?>">
                     <span class="error">*Required <?php echo $cityErr;?></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="<?php echo $zipcode;?>">
                     <span class="error">*Required <?php echo $zipcodeErr;?></span>
                 </div>
             </div>
