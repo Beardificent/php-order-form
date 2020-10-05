@@ -42,7 +42,7 @@
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
                     <input type="text" name="street" id="street" class="form-control" value="<?php echo $street;?>">
-                    <span class="error" style="color:red;"><?php echo $streetErr;?></span>
+                    <span class="error"><?php echo $streetErr;?></span>
 
                 </div>
                 <div class="form-group col-md-6">
