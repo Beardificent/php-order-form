@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
         $emailErr = "Email is required";
     } else {
-        $email = check_input($_POST["email"]);
+        $email = $_POST["email"];
         // check if e-mail address is well-formed
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Invalid email format";
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["street"])) {
         $streetErr = "Street is required";
     } else {
-        $street = check_input($_POST["street"]);
+        $street = $_POST["street"];
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z-' ]*$/",$street)) {
             $streetErr = "Only letters and white space allowed";
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["streetnumber"])) {
         $streetNumErr = "Streetnumber is required";
     } else {
-        $streetNum = check_input($_POST["streetnumber"]);
+        $streetNum = $_POST["streetnumber"];
         if(!preg_match("/^[0-9*#+]+$/", $streetNum)){
             $streetNumErr = "Only numeric values allowed";
         } else {
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["city"])) {
         $cityErr = "City is required";
     } else {
-        $city = check_input($_POST["city"]);
+        $city = $_POST["city"];
         if (!preg_match("/^[a-zA-Z-' ]*$/",$city)) {
             $cityErr = "Only letters and white space allowed";
         } else {
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["zipcode"])) {
         $zipcodeErr = "Zipcode is required";
     } else {
-        $zipcode = check_input($_POST["zipcode"]);
+        $zipcode = $_POST["zipcode"];
         if(!preg_match("/^[0-9*#+]+$/", $zipcode)){
            $zipcodeErr = "Only numeric values allowed";
         }
@@ -80,26 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-
-/*
-// define variables and set to empty values
-$email = $street = $streetnumber = $city = $zipcode = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = check_input($_POST["email"]);
-    $street = check_input($_POST["street"]);
-    $streetnumber = check_input($_POST["streetnumber"]);
-    $city = check_input($_POST["city"]);
-    $zipcode = check_input($_POST["zipcode"]);
-}
-*/
-
-function check_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 
 
 function whatIsHappening() {
