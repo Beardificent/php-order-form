@@ -101,7 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
@@ -139,6 +138,14 @@ if ($_GET['food'] == 1 ){
 }
 
 
+
+
 $totalValue = 0;
 
+/*
+$totalValue = $food[0]['price'] + $food[1]['price'] + $food[2]['price'] + $food[3]['price'] + $drinks[0]['price'] + $drinks[1]['price'] + $drinks[2]['price'] + $drinks[3]['price'];
+if($totalValue == NAN){
+    $totalValue = 0;
+}
+*/
 require 'form-view.php';
