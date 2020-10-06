@@ -15,6 +15,7 @@ session_start();
 $emailErr = $streetErr = $streetNumErr = $cityErr = $zipcodeErr = "";
 $email = $street = $streetNum = $city = $zipcode = "" ;
 $success = "";
+$totalValue = 0;
 
 
 //SESSION (CONFUSED ME) FIRST WE DEFINE THE VARIABLE OF OUR SESSION WHICH CORRESPONDS WITH THE LOCATION IN DOM (CONTINUED DOWN IN IF STATEMENTS)
@@ -92,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($emailErr == "" && $streetErr == "" && $streetNumErr == "" && $cityErr == "" && $zipcodeErr == ""){
         if (isset($_POST['express_delivery']) && $_POST['express_delivery'] == '5') {
+            $totalValue += 5;
             $success = '<div class="alert alert-success" role="alert">
         This is a success alert—check it out! Order will be delivered in 45min!
 </div>';
@@ -148,7 +150,7 @@ if (isset($_GET['food'])) {
     }
 }
 
-$totalValue = 0;
+
 
 
 
