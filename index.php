@@ -16,6 +16,7 @@ $emailErr = $streetErr = $streetNumErr = $cityErr = $zipcodeErr = "";
 $email = $street = $streetNum = $city = $zipcode = "" ;
 $success = "";
 
+
 //SESSION (CONFUSED ME) FIRST WE DEFINE THE VARIABLE OF OUR SESSION WHICH CORRESPONDS WITH THE LOCATION IN DOM (CONTINUED DOWN IN IF STATEMENTS)
 if (!empty($_SESSION['street'])){
     $street = $_SESSION['street'];
@@ -112,9 +113,6 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
-
-
-
 //your products with their price.
 $food = [
     ['name' => 'Club Ham', 'price' => 3.20],
@@ -133,9 +131,14 @@ $drinks = [
 
 if (!isset($_SESSION['products'])){
     $products = $food;
-} else {
-    $products = $_SESSION['products'];
 }
+if ($_GET['food'] == 1 ){
+    $products = $food;
+} else {
+    $products = $drinks;
+}
+
+
 $totalValue = 0;
 
 require 'form-view.php';
