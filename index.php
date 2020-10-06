@@ -31,7 +31,9 @@ if (!empty($_SESSION['city'])){
 if (!empty($_SESSION['zipcode'])){
     $zipcode = $_SESSION['zipcode'];
 }
-
+if (!empty($_SESSION['products'])){
+    $products = $_SESSION['products'];
+}
 //ERROR MESSAGING INPUTFIELDS
 
 
@@ -130,6 +132,7 @@ $food = [
     ['name' => 'Club Salmon', 'price' => 5]
 ];
 
+
 if (!isset($_SESSION['products'])){
     $products = $food;
 }
@@ -145,15 +148,17 @@ $drinks = [
 if (isset($_GET['food'])) {
     if ($_GET['food'] == '1') {
         $products = $food;
+        $_SESSION['products'] = $food;
     } else {
+        $_SESSION['products'] = $drinks;
         $products = $drinks;
+
+
     }
 }
 
-
-
-$productCount = count($products);
-for($i = 0; $i < $productCount; $i++){
+$foodCount = count($food);
+for($i = 0; $i < $foodCount; $i++){
     if (isset($_POST['products'][$i])){
         $totalValue += $products[$i]['price'];
     }
