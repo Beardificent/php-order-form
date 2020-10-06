@@ -91,9 +91,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
     if ($emailErr == "" && $streetErr == "" && $streetNumErr == "" && $cityErr == "" && $zipcodeErr == ""){
-        $success = '<div class="alert alert-success" role="alert">
-        This is a success alert—check it out!
+        if (isset($_POST['express_delivery']) && $_POST['express_delivery'] == '5') {
+            $success = '<div class="alert alert-success" role="alert">
+        This is a success alert—check it out! Order will be delivered in 45min!
 </div>';
+        } else {
+            $success = '<div class="alert alert-success" role="alert">
+        This is a success alert—check it out! Order will be delivered in 2hours!
+</div>';
+        }
     }
 
 }
@@ -112,6 +118,7 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
+
 //your products with their price.
 $food = [
     ['name' => 'Club Ham', 'price' => 3.20],
@@ -121,6 +128,10 @@ $food = [
     ['name' => 'Club Salmon', 'price' => 5]
 ];
 
+if (!isset($_SESSION['products'])){
+    $products = $food;
+}
+
 $drinks = [
     ['name' => 'Cola', 'price' => 2],
     ['name' => 'Fanta', 'price' => 2],
@@ -128,22 +139,23 @@ $drinks = [
     ['name' => 'Ice-tea', 'price' => 3],
 ];
 
-if (!isset($_SESSION['products'])){
-    $products = $food;
+
+if (isset($_GET['food'])) {
+    if ($_GET['food'] == '1') {
+        $products = $food;
+    } else {
+        $products = $drinks;
+    }
 }
-if ($_GET['food'] == 1 ){
-    $products = $food;
-} else {
-    $products = $drinks;
-}
-
-
-
 
 $totalValue = 0;
 
+
+
+
+
 /*
-$totalValue = $food[0]['price'] + $food[1]['price'] + $food[2]['price'] + $food[3]['price'] + $drinks[0]['price'] + $drinks[1]['price'] + $drinks[2]['price'] + $drinks[3]['price'];
+$totalValue = $food[0]['price'] + $food[1]['price'] + $food[2]['price'] + $food[3]['price'] + $food[4]['price'] + $drinks[0]['price'] + $drinks[1]['price'] + $drinks[2]['price'] + $drinks[3]['price'];
 if($totalValue == NAN){
     $totalValue = 0;
 }
