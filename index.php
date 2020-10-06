@@ -152,10 +152,15 @@ if (isset($_GET['food'])) {
 
 
 
+$productCount = count($products);
+for($i = 0; $i < $productCount; $i++){
+    if (isset($_POST['products'][$i])){
+        $totalValue += $products[$i]['price'];
+    }
+}
 
 
-
-
+whatIsHappening();
 /*
 $totalValue = $food[0]['price'] + $food[1]['price'] + $food[2]['price'] + $food[3]['price'] + $food[4]['price'] + $drinks[0]['price'] + $drinks[1]['price'] + $drinks[2]['price'] + $drinks[3]['price'];
 if($totalValue == NAN){
